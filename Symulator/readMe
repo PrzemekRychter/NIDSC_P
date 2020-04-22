@@ -4,3 +4,33 @@ Funkcje pomocnicze encodeHamming, generateData .... , można
 było je dać w metodach symulatora, ale na poczatku tak zrobiłem.
 W celu uruchomienia Symulatora należy pobrać wszystkie 
 skrypty z tego folderu.
+
+Dla hamminga nalezy podac poprawne n i k np 7 i 4, 15 i 11
+Z odpalanie symulacji dla kanału BSC nie ma problemu
+jedynie duże dane np 500 000 bitow i maly interwał np
+Prawdopodobienstwo przeklamania od 0 do 1 z interwałem 
+0.001  czyli 1000 razy jest wykonywane kodowanie dekodowanie
+moze powodowac ze bedzie symulacja bedzie dlugo szla chyba
+w powyzszych danych 2,5 min.
+
+Odpalanie z kanałem BNC - błedy grupowe
+trzeba podac 3 parametry
+
+ABEL - Avarage burst error length - srednia dlugosc bledu
+ r = 1/Abel r to praw. przejscia ze stanu zlego do dobrego
+ 
+ Probavility of burst error  - prawdopodobienstwo wystapienia
+ blędu grupowego, ten parametr definiuje p - przejsc z dobrego do zlego
+ troche innym wzorem ktory jest podany tutaj
+ https://www.researchgate.net/publication/266652304_Subjective_and_Objective_Evaluation_and_Packet_Loss_Modeling_for_3D_Video_Transmission_over_LTE_Networks
+ i w ksiazce mochanckiego https://www.google.com/search?client=firefox-b-d&q=mochancki+kodowanie
+ 1 link (nie odpala sie strona teraz) 
+ 
+ Loos density - praw błedu w stanie złym - powinno byc duze od 40% do 100%
+ 
+ 1. ABEL - od 5-do nie wiem ile  2.Prob of burst erro raczej małe (ten parametr gdy jest zmienny wykresy sa "intyicyjnie dobre,logiczne'
+ 3. bliskie 1
+ wybieramy z tych 3 zmienny parametr nalepiej 2 albo 3
+ Przy zmieniennym ABEL (rosnacym) ber powinie rosnac bo dlugosc bledu rosnie (praw ich wystapienia stale) ale wykres jest poszarpany
+ 
+ 
