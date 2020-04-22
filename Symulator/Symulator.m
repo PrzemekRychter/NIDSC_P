@@ -56,6 +56,40 @@ classdef Symulator < handle
         function dHam(obj)              
             obj.dData = decodeHamming(obj.tData,obj.n,obj.k);
         end
+        function eBch(obj)
+            
+            rem = mod(size(obj.data,1),obj.k);
+            for yy = size(obj.data,1) : (obj.k-rem) + size(obj.data,1)
+                obj.data(yy,1) = 0;
+            end
+            words = size(obj.data,1)/obj.k;
+            m = 0;
+            macierz = zeros(words,obj.k);
+            for x = 1:words
+                for ii = 1: obj.k
+                    m = m + 1;
+                     macierz(x,ii) = obj.data(m,1);
+                end
+            end
+            msg = gf(macierz);
+            
+            obj.eData = bchenc(msg,obj.n,obj.k);
+        end
+        function dBch(obj)
+            words = size(obj.data,1)/obj.k;
+            decoded = bchdec(obj.tData,obj.n,obj.k);
+            %decodedDouble = gf2dec(decoded,words,obj.k);
+            gg = 0;
+            for x = 1:words
+                for ii = 1: obj.k
+                    gg = gg + 1;
+                    
+                    obj.dData(gg,1) = decoded.x(x,ii); 
+                end
+            end
+        end
+        
+        
         % FUNCKJE DODATKOWE
         function calculateBer(obj)
            % Uzupelnienie wdlugosci wektora danych do wektora zdekodowanego
@@ -73,6 +107,7 @@ classdef Symulator < handle
             % dodatkow bity uzupelnione ósemkami czyli zostana zaliczone
             % jako blad
             errors = obj.data~=obj.dData;
+            
             obj.ber = sum(errors,1)/(size(obj.data,1)-s3);
         end
         function calculateERbnc(obj)        % liczy spodziewany ER dla bnc
@@ -82,18 +117,26 @@ classdef Symulator < handle
         obj.rate = obj.k/obj.n;
         obj.redundancy = 1 - obj.rate;
         end
+        
         % FUNCKJA SYMULACJI
-        function simulate(obj) 
+        function wykres = simulate(obj) 
         l = input(" Podaj dlugość danych na jakich będą przeprowadzane kodowania transmisje i dekodowania : "); % WYBOR DLUGOSCI DANYCH
         obj.data = generateData(l);
-        obj.typKodowania = input(" Podaj typ kodowania: 0 - kody hamminga. 1 - ... : ");       % WYBOR TYPU KODOWANIA
+        obj.typKodowania = input(" Podaj typ kodowania: 0 - kody hamminga. 1 - BCH. 2 - kod powtórzeniowy : ");       % WYBOR TYPU KODOWANIA
         if obj.typKodowania == 0                                                                 % 0 - kod hamminga
             obj.n = input(" Wybrano kod hamminga, podaj wartosc n: ");
             obj.k = input("                       podaj wartosc k: ");
             obj.calculateHam(); % oblicza sprawnosc i nadmiarowosc
        end
        if obj.typKodowania == 1
-           %Ustawienie paramtrow dla innych kodow ...
+           obj.n = input(" Wybrano rodzinę kodów BCH, podaj wartosc n: ");
+           obj.k = input("                            podaj wartosc k: ");
+           obj.calculateHam(); % oblicza sprawnosc i nadmiarowosc (dla hamminga jest takasam dla wszystkich kodow blokowych);
+       end
+        if obj.typKodowania == 2                                                             % 2 - repetition code
+            disp(" Wybrano kod powtórzeniowy");
+            obj.n = 3; obj.k = 1;
+            obj.calculateHam(); % oblicza sprawnosc i nadmiarowosc
        end
        obj.modelKanalu = input(" Podaj model kanału. 0 - BSC - błedy niezależne. 1 - BNC - błedy grupowe: ");  % WYBOR KANALU
        if obj.modelKanalu == 0
@@ -123,7 +166,7 @@ classdef Symulator < handle
        ileRazy = (obj.oY(1,length(obj.oY))-obj.oY(1,1))/obj.change;
        j = 0;
        disp('**********************************************************');
-       disp(' Rozpoczynam symulacje.');
+       disp('ROZPOCZYNAM SYMULACJE');
        fprintf(' Symulacja w trakcie. Powtarzam %d razy proces:\n', ileRazy);
        fprintf(' generacja danych o wielkości %d bitów -> kodowanie -> dekodowanie -> obliczanie ber\n',l);
        tic
@@ -147,8 +190,9 @@ classdef Symulator < handle
                case 0       % hamming code
                    eHam(obj);
                case 1        % jakis inny kod (wczsniej podane dane, zmienny parametr, i parametry kodu!!!)
-               
-               case 2 % ....
+                    eBch(obj);
+               case 2
+                   eHam(obj);
            end 
           if obj.modelKanalu == 0     % TRANSMISJA   0 - BSC 1 - BNC
               bsc(obj);
@@ -157,11 +201,12 @@ classdef Symulator < handle
           end                             
           % DEKODOWANIE
           switch obj.typKodowania
-               case 0       % hamming code
+               case 0     % hamming code
                    dHam(obj);
                case 1        % jakis inny kod (wczsniej podane dane, zmienny parametr, i parametry kodu!!!)
-               
-               case s2 % ....
+                    dBch(obj);
+               case 2 % ....
+                   dHam(obj);
           end
           % OBLICZENIE BER (oraz innych parametrow jezeli beda potrzebne)
            calculateBer(obj);
@@ -179,9 +224,10 @@ classdef Symulator < handle
           leng = length(obj.oY);                          % Te dwie linie bez znaczenia
           obj.oX(length(obj.oX)+1:leng) = 0;
        end
-        disp('Symulacja zakończona.');
         toc
+        disp('SYMULACJA ZAKOŃCZONA');
         disp('**********************************************************');
+        
        figure
        plot(obj.oY,obj.oX);
        ylabel('BER - bit error ratio');
@@ -211,9 +257,21 @@ classdef Symulator < handle
             typ = sprintf('Hamming (%d,%d)',obj.n,obj.k);
             rateS = sprintf('Rate: %.2f', obj.rate);
             redunS = sprintf('Redundancy: %.2f', obj.redundancy);
+            % ZDOLNOSC KOREKCYJNA DLA KODWO HAMINGA = 1;
             paramKodu = {'Code parameters','----------------------',typ,rateS,redunS};
            case 1
-           case 2     
+             typ = sprintf('BCH (%d,%d)',obj.n,obj.k);
+             rateS = sprintf('Rate: %.2f', obj.rate);
+             redunS = sprintf('Redundancy: %.2f', obj.redundancy);
+             zdol = sprintf('Error-correction capability: %d', bchnumerr(obj.n,obj.k));
+             paramKodu = {'Code parameters','----------------------',typ,rateS,redunS,zdol};
+             
+           case 2   
+              % Opis dla  repetition code
+            typ = sprintf('Repetition code - Hamming (%d,%d)',obj.n,obj.k);
+            rateS = sprintf('Rate: %.2f', obj.rate);
+            redunS = sprintf('Redundancy: %.2f', obj.redundancy);
+            paramKodu = {'Code parameters','----------------------',typ,rateS,redunS}; 
        end
        % Opis - parametry stale kanalu
        paramKanalu = 'Channel constant parameters';
@@ -242,7 +300,14 @@ classdef Symulator < handle
       if obj.modelKanalu == 1
        annotation('textbox',[.7 .5 .1 .1],'String',opis,'FitBoxToText','on');
       end
-     
+      
+     wykres  = zeros(2, length(obj.oY));
+     for m = 1 : length(obj.oY)
+        wykres(1,m) = obj.oY(1,m);
+     end
+     for w =  1 : length(obj.oX)
+       wykres(2,w) = obj.oX(1,w);
+     end
     end
 end
 end
