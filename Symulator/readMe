@@ -2,3 +2,5 @@ Tu jest Symulator, simulate - odpalanie
 Pomocnicze funkcje do symulatora, w tym do kodow hamminga
 Funkcje pomocnicze encodeHamming, generateData .... , można
 było je dać w metodach symulatora, ale na poczatku tak zrobiłem.
+W celu uruchomienia Symulatora należy pobrać wszystkie 
+skrypty z tego folderu.
