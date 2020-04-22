@@ -73,7 +73,7 @@ classdef Symulator < handle
             % dodatkow bity uzupelnione ósemkami czyli zostana zaliczone
             % jako blad
             errors = obj.data~=obj.dData;
-            obj.ber = sum(errors,'all')/(size(obj.data,1)-s3);
+            obj.ber = sum(errors,1)/(size(obj.data,1)-s3);
         end
         function calculateERbnc(obj)        % liczy spodziewany ER dla bnc
         obj.expectedERcec = (obj.G2B/(obj.B2G + obj.G2B))*obj.lossDensity;
