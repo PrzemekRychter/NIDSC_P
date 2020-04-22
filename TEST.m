@@ -156,6 +156,7 @@ classdef Symulator < handle
                    
                    ile = ((finish - cp) / interval) + 1;                  
                    SumaBCH = zeros(1,ile);
+                   Suma2BCH = zeros(1,ile);
                    
                    for u = 1 : ile
                    
@@ -163,8 +164,11 @@ classdef Symulator < handle
                            
                             msg = gf(randi([0 1],1,kPar));
                             code = bchenc(msg,nPar,kPar);
+                            code2 = bchenc(msg,nPar,kPar);
+                            
                             BerBCH = zeros(1,kPar);
-                           
+                            SigmaBCH = zeros(1,kPar);
+                            
                             for g = 1 : kPar
                                 val = randi([0 100],1,1);
                                 if val > 100 - cp
@@ -176,31 +180,55 @@ classdef Symulator < handle
                                 end
                             end
                             
+                            for o = 1 : kPar
+                                val2 = normrnd(0,cp,[1 length(code2)]);
+                                if code2(o) == 1
+                                    val2 = val2 + 1;
+                                end
+                                if val2 <= 0
+                                    code2(o) = 0;
+                                else
+                                    code2(o) = 1;
+                                end
+                            end
+                            
                             [newmsg,err,ccode] = bchdec(code,nPar,kPar);
+                            [newmsg2,err2,ccode2] = bchdec(code2,nPar,kPar);
                             
                             errorsBCH = 0;
+                            errorsSigma = 0;
                             
                             test = (msg.x ~= newmsg.x);
+                            test2 = (msg.x ~= newmsg2.x);
                             for j = 1:kPar
                                 errorsBCH = errorsBCH + test(j);
+                                errorsSigma = errorsSigma + test2(j);
                             end
                             
                             BerBCH(i) = errorsBCH/kPar;
+                            SigmaBCH(i) = errorsSigma/kPar;
                             
                        end
                        cp = cp + interval;
                        
                        for i = 1:100
                            SumaBCH(u) = SumaBCH(u) + BerBCH(i);
+                           Suma2BCH(u) = Suma2BCH(u) + SigmaBCH(i);
                        end
                    end
                    
                    cps = cp1:interval:finish;
-                   
-                   subplot(1,1,1);
+                                      
+                   subplot(211);
                    plot(cps,SumaBCH);
                    xlabel('Przeklamanie');
                    ylabel('BER');
+                   
+                   subplot(212);
+                   plot(cps,Suma2BCH);
+                   xlabel('Odchylenie standardowe');
+                   ylabel('BER');
+                   
                    return; 
                case 2 % ....
            end 
