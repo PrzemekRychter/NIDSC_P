@@ -78,12 +78,12 @@ classdef Symulator < handle
         function dBch(obj)
             words = size(obj.data,1)/obj.k;
             decoded = bchdec(obj.tData,obj.n,obj.k);
-            %decodedDouble = gf2dec(decoded,words,obj.k);
             gg = 0;
             for x = 1:words
                 for ii = 1: obj.k
-                    gg = gg + 1;                    
-                    obj.dData(gg,1) = decoded.x(x,ii); 
+                    gg = gg + 1;    
+                    tmp = double(decoded.x);
+                    obj.dData(gg,1) = tmp(x,ii);
                 end
             end
         end
