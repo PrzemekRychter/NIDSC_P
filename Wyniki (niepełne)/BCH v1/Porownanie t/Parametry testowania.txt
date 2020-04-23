@@ -1,0 +1,19 @@
+PARAMETRY
+kanał : BSC
+dane : 100000 bitów
+p poczatkowe = 0
+skok = 0.0005
+p koncowe = 1
+
+
+Czasy symulacji
+63,57  33s      
+63,51  42s	
+63,45  59s	
+63,39  79s
+63,36  96s
+63,30  125s
+63,24  168s
+63,18  298s
+63,16  374s		
+63,10  688s
