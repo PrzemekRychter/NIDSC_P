@@ -74,30 +74,10 @@ classdef Symulator < handle
             end
             %words = size(obj.data,1)/obj.k;
             obj.eData = step(obj.bchEncoder, obj.data);    % Encoder bierze wektor kolumnowy i sam tworzy GF
-            % m = 0;
-            % macierz = zeros(words,obj.k);
-            % for x = 1:words
-            %     for ii = 1: obj.k
-            %         m = m + 1;
-            %          macierz(x,ii) = obj.data(m,1);
-            %     end
-            % end
-            % msg = gf(macierz);
-            % obj.eData = bchenc(msg,obj.n,obj.k);
         end
         % Dekoduj kod BCH
         function dBch(obj) 
             obj.dData = step(obj.bchDecoder,obj.tData);
-            % words = size(obj.data,1)/obj.k;
-            % decoded = bchdec(obj.tData,obj.n,obj.k);
-            % gg = 0;
-            % for x = 1:words
-            %    for ii = 1: obj.k
-            %        gg = gg + 1;
-            %        
-            %        %obj.dData(gg,1) = decoded.x(x,ii);   % Ta linia długo zajmuje tak z 30 sekuund (ustawilem brake pointy)
-            %    end
-            %end
         end
         
         % FUNCKJE DODATKOWE
@@ -231,10 +211,9 @@ classdef Symulator < handle
                 obj.oY(1,j) = obj.ber;           
                 obj.data = 0; obj.eData = 0; obj.tData = 0; obj.dData = 0; obj.ber = 0;   
                 obj.data = randi([0 1],obj.leng,1);
-                
                 % Wyswietlenie postępu
                 proc = viewStage(proc,j,ileRazy);
-            end
+            end % KONIEC GŁÓWNEJ PĘTLI SYMULACJI
             fprintf("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");
             fprintf("\t 100%% of simulation completed.\n"); 
             czas = toc;
@@ -309,14 +288,14 @@ classdef Symulator < handle
             if obj.modelKanalu == 1
                 annotation('textbox',[.7 .5 .1 .1],'String',opis,'FitBoxToText','on');
             end
-            % zwracanie danych w zmiennej wykres
+            % ZWRACANIE DANYCH W MACIERZY dane: 1 wiersz to oX 2 to oY
             dane  = zeros(2, length(obj.oY));
-            for m = 1 : length(obj.oY)
-                dane(1,m) = obj.oY(1,m);
-            end
             for w =  1 : length(obj.oX)
-                dane(2,w) = obj.oX(1,w);
+                dane(1,w) = obj.oX(1,w);
             end
+            for m = 1 : length(obj.oY)
+                dane(2,m) = obj.oY(1,m);
+            end  
         end
 end
 end
