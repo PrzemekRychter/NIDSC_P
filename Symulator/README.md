@@ -23,9 +23,9 @@ Uruchamianie z kanałem BNC (błedy grupowe) wymaga podania 3 parametrów:
 
 Przydatne założenia: 
 * Loos density - prawdopodobieństwo błedu w stanie złym - powinno być duze od 40% do 100%
-* ABEL - od 5
-* Probability of burst error - raczej małe - ten parametr gdy jest zmienny wykresy są intyicyjnie dobre, logiczne. Bliskie 1
- wybieramy z tych 3 zmienny parametr nalepiej 2 albo 3.
+* ABEL - 3 do 10 (może być większe)
+* Probability of burst error - raczej małe (np 5%) - ten parametr gdy jest zmienny wykresy są intyicyjnie dobre, logiczne.
+ Wybieramy z tych 3 parametrów 1 zmienny parametr nalepiej 1 albo 3. Przy zmiennnym ABEL wykresy "dziwne"
  Przy zmieniennym ABEL (rosnacym) BER powinien rosnąć ponieważ długosc błędu rosnie (prawopodobieństwo ich wystapienia stale) ale wykres jest poszarpany.
  
  
