@@ -34,7 +34,7 @@ classdef Symulator < handle
         % KONSTRUKTOR
         function obj = Symulator()
         end
-        % FUNKCJE KANAŁÓW
+        % FUNKCJE KANA�?ÓW
         function setParameterForBsc(obj,probability)        % Ustawienie prawdopodobiestwa
         obj.probability = probability;
         end
@@ -128,40 +128,40 @@ classdef Symulator < handle
         
         % FUNCKJA SYMULACJI
         function wykres = simulate(obj) 
-        l = input(" Podaj dlugość danych na jakich będą przeprowadzane kodowania transmisje i dekodowania : "); % WYBOR DLUGOSCI DANYCH
+        l = input(' Podaj dlugość danych na jakich będą przeprowadzane kodowania transmisje i dekodowania : '); % WYBOR DLUGOSCI DANYCH
         obj.data = generateData(l);
-        obj.typKodowania = input(" Podaj typ kodowania: 0 - kody hamminga. 1 - BCH. 2 - kod powtórzeniowy : ");       % WYBOR TYPU KODOWANIA
+        obj.typKodowania = input(' Podaj typ kodowania: 0 - kody hamminga. 1 - BCH. 2 - kod powtórzeniowy : ');       % WYBOR TYPU KODOWANIA
         if obj.typKodowania == 0                                                                 % 0 - kod hamminga
-            obj.n = input(" Wybrano kod hamminga, podaj wartosc n: ");
-            obj.k = input("                       podaj wartosc k: ");
+            obj.n = input(' Wybrano kod hamminga, podaj wartosc n: ');
+            obj.k = input('                       podaj wartosc k: ');
             obj.calculateHam(); % oblicza sprawnosc i nadmiarowosc
        end
        if obj.typKodowania == 1
-           obj.n = input(" Wybrano rodzinę kodów BCH, podaj wartosc n: ");
-           obj.k = input("                            podaj wartosc k: ");
+           obj.n = input(' Wybrano rodzinę kodów BCH, podaj wartosc n: ');
+           obj.k = input('                            podaj wartosc k: ');
            obj.bchEncoder = comm.BCHEncoder(obj.n,obj.k);
            obj.bchDecoder = comm.BCHDecoder(obj.n,obj.k);
            obj.calculateHam(); % oblicza sprawnosc i nadmiarowosc (dla hamminga jest takasam dla wszystkich kodow blokowych);
        end
         if obj.typKodowania == 2                                                             % 2 - repetition code
-            disp(" Wybrano kod powtórzeniowy");
+            disp(' Wybrano kod powtórzeniowy');
             obj.n = 3; obj.k = 1;
             obj.calculateHam(); % oblicza sprawnosc i nadmiarowosc
        end
-       obj.modelKanalu = input(" Podaj model kanału. 0 - BSC - błedy niezależne. 1 - BNC - błedy grupowe: ");  % WYBOR KANALU
+       obj.modelKanalu = input(' Podaj model kanału. 0 - BSC - błedy niezależne. 1 - BNC - błedy grupowe: ');  % WYBOR KANALU
        if obj.modelKanalu == 0
        obj.paramChange = 0;
-       z = input(" Wybrany kanał: BSC - błedy pojedyncze. Podaj poczatkowe prawdopodobieństwo wystąpienia błędu: ");
+       z = input(' Wybrany kanał: BSC - błedy pojedyncze. Podaj poczatkowe prawdopodobieństwo wystąpienia błędu: ');
        obj.setParameterForBsc(z);
        else
-       abelx = input(" Wybrany kanał: BNC - błedy grupowe. Podaj początkowe wartości dla parametrów modelu Gilberta\n ABEL - Avarage burst error length - Średnia długość błedu grupowego: ");  
-       probBurstE = input(" Probability of burst error - Prawdopodobieństwo wystąpienia błedu grupowego: ");
-       loss = input(" Loss Density - Prawdopodobieństwo wystąpienia błędu w stanie złym: ");
+       abelx = input(' Wybrany kanał: BNC - błedy grupowe. Podaj początkowe wartości dla parametrów modelu Gilberta\n ABEL - Avarage burst error length - Średnia długość błedu grupowego: ');  
+       probBurstE = input(' Probability of burst error - Prawdopodobieństwo wystąpienia błedu grupowego: ');
+       loss = input(' Loss Density - Prawdopodobieństwo wystąpienia błędu w stanie złym: ');
        setParametersForBnc(obj,abelx,probBurstE,loss);
-       obj.paramChange = input(" Wybierz zmienny parametr.\n 1 - Avarage burst error length. 2 - Probability of burst error. 3 - Loos density: ");
+       obj.paramChange = input(' Wybierz zmienny parametr.\n 1 - Avarage burst error length. 2 - Probability of burst error. 3 - Loos density: ');
        end
-       obj.change = input(" Podaj interwał z jakim parametr ma się zmieniać: ");
-       obj.endValueOfParam = input(" Podaj końcową wartość zmiennego parametru: ");
+       obj.change = input(' Podaj interwał z jakim parametr ma się zmieniać: ');
+       obj.endValueOfParam = input(' Podaj końcową wartość zmiennego parametru: ');
       
        switch obj.paramChange                       % Utworzenie osi Y
            case 0
@@ -180,7 +180,7 @@ classdef Symulator < handle
        fprintf(' Symulacja w trakcie. Powtarzam %d razy proces:\n', ileRazy);
        fprintf(' generacja danych o wielkości %d bitów -> kodowanie -> dekodowanie -> obliczanie ber\n',l);
        tic
-       for index = obj.oY    % GŁOWNA PĘTLA SYMULACJI 
+       for index = obj.oY    % G�?OWNA P�?TLA SYMULACJI 
            j = j+1;
            switch obj.paramChange   % zmiana parametru dla kolejnej iteracji
                   case 0
@@ -235,7 +235,7 @@ classdef Symulator < handle
           obj.oX(length(obj.oX)+1:leng) = 0;
        end
         toc
-        disp('SYMULACJA ZAKOŃCZONA');
+        disp('SYMULACJA ZAKO�?CZONA');
         disp('**********************************************************');
         
        figure
