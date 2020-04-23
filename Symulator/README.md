@@ -14,8 +14,8 @@
 7. Wprowadź końcową wartość zmiennego parametru.
 
 Symulacja zostanie wykonana. W celu pozyskania danych do dalszych badań,
-przed uruchomieniem symulacji przypisz wyniki symulacji do zmiennej
-   dane = obiekt.simulate();
+przed uruchomieniem symulacji przypisz wyniki symulacji do zmiennej 
+        dane = obiekt.simulate();  
 W zmiennej dane w 1 wierszu będzie oś X, a w 2 oś Y
 
 Uruchamianie z kanałem BNC (błedy grupowe) wymaga podania 3 parametrów: 
