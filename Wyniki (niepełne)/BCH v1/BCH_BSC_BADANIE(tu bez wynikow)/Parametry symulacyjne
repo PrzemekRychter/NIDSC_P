@@ -1,0 +1,38 @@
+PARAMETRY
+
+kanał  BSC
+dane  100000 bitów
+p poczatkowe = 0
+skok = 0.0005
+p koncowe = 0.5
+
+ZBADANE KODY
+BCH (15,7)  t = 2
+BCH (15,5)  t = 3  nadmiarowosc taka sama jak repetition a zdolnosc korekcyjna wieksza o 2!
+BCH (31,21) t = 2
+BCH (31,16) t = 3 NIE - duża nadmiarowość
+BCH (31,11) t = 5 MIE - duża nadmiarowość
+BCH (31,6)  t = 7 NIE - ...
+BCH (63,51) t = 2
+BCH (63,45) t = 3
+BCH (63,39) t = 4
+BCH (
+
+
+
+
+NIE przeprowadzilem badanie bo nie wiem jakie kody zbadac
+plan jest taki tez zeby zbadac ze zmieniajacym sie abel np od 1 do 5 co oznacza ze bledy sa coraz bardziej grupowe(tam mozna porownac rozne kody
+ale najpierw wyselekcojnowac najlepsze)
+
+
+
+
+
+
+Kody Bose–Chaudhuri–Hocquenghema (BCH) należą do kodów korygujących
+błędy losowe i mają duże znaczenie praktyczne. Zostały one niezależnie skonstruowane przez Hocquenghema w 1959 r. oraz przez Bose z Chaudhurim w 1960 r. Kody
+BCH swoją popularność zawdzięczają następującym zaletom
+ -Istnieją efektywne metody konstruowania kodów BCH o zadanych właściwo-
+ściach detekcyjnych i korekcyjnych.
+ - Konstrukcja koderów i dekoderów kodów BCH jest prostsza niż dla innych kodów
