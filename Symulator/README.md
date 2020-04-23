@@ -18,6 +18,9 @@ przed uruchomieniem symulacji przypisz wyniki symulacji do zmiennej
         dane = obiekt.simulate();  
 W zmiennej dane w 1 wierszu będzie oś X, a w 2 oś Y
 
+W celu zapamiętania danych zapisz wykres będący wynikiem symulacji (okno.fig)
+skrypt "pobierzWykres" realizuje "wyłuskanie danych" z obiektu okno.fig
+
 Uruchamianie z kanałem BNC (błedy grupowe) wymaga podania 3 parametrów: 
 * ABEL - Avarage burst error length - średnia długosc błędu
 * r = 1/Abel r to prawdopodobieństwo przejścia ze stanu złego do dobrego
