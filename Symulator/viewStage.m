@@ -1,3 +1,4 @@
+% Funckja pomocnicza do wyswietlania postepu symulacji
 function  staryProcent = viewStage(staryProcent,u,ileRazy)
       nie = 0;
       procent = idivide((u/ileRazy)*100,int16(1));
