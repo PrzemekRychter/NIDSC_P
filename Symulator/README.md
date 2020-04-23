@@ -2,15 +2,21 @@
 ### W celu uruchomienia Symulatora należy pobrać wszystkie skrypty z tego folderu.
 ### simulate.m - uruchomienie symulatora.
 
-Pomocnicze funkcje do symulatora, w tym do kodów Hamminga
-takie jak encodeHamming, generateData ... , można było
-umieścić w metodach symulatora, ale od początku wybrano rozwiązanie by korzytsać z funkcji.
+1. Wprowadź ilość bitów dla których będą przeprowadzane kodowania,transmisja,dekodowania
+2. Wybierz rodzinę kodów, z chcesz zbadać konkretny kod
+3. Podaj niezbędne parametry kodu.
+4. Wybierz model kanału. BSC - błedy pojedyńcze, BNC - błedy grupowe
+  4.a. W przypadku BNC podaj wartości parametrów
+  4.b. W przypadku BNC wybierz zmienny parametr kanału.
+5. Wprowadź początkową wartość zmiennego parametru kanału. 
+   Dla BSC domyślnie jest to jedyny parametr - prawdopodobieństwo wystąpienia błedu
+6. Wprowadź interwał(skok) z jakim parametr ma się zmieniać.
+7. Wprowadź końcową wartość zmiennego parametru.
 
-Dla kodu Hamminga należy podać poprawne wartości n i k np.: 7 i 4, 15 i 11.
-Uruchomienie symulacji dla kanału BSC przebiega bezproblemowo,
-jedynie duże dane np.: 500 000 bitow i prawdopodobienstwo przeklamania od 0 do 1 z interwałem 
-0.001 czyli 1000 - krotne wykonywane kodowanie i dekodowanie,
-może powodować że symulacja bedzie długo trwała ( dla powyższych danych 2.5 minuty).
+Symulacja zostanie wykonana. W celu pozyskania danych do dalszych badań,
+przed uruchomieniem symulacji przypisz wyniki symulacji do zmiennej
+   dane = obiekt.simulate();
+W zmiennej dane w 1 wierszu będzie oś X, a w 2 oś Y
 
 Uruchamianie z kanałem BNC (błedy grupowe) wymaga podania 3 parametrów: 
 * ABEL - Avarage burst error length - średnia długosc błędu
