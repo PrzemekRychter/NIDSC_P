@@ -1,17 +1,18 @@
 %
 %
 %
-% Ten symulator wyrzuca 2 wykresy
-% 1. BER widziany przez użytkownika - niebieski wykres
-% 2. BER - prawdziwa stopa błedów w kanale (tak jakby nie użyto kodowania)
+%   Ten symulator wyrzuca 2 wykresy
+%   1. BER widziany przez użytkownika - niebieski wykres
+%   2. BER - prawdziwa stopa błedów w kanale (tak jakby nie użyto kodowania)
 %
 %
 %
 %
-classdef Symulator < handle
+classdef Symulator2 < handle
     properties
         %TEST 
         ileb; oY2;
+        xdata;
         %TEST
         % DANE, PARAMETRY, ZMIENNE POMOCNICZE
         % długość danych, dane wejściowe, zakodowane, po transmisji, odkodowane
@@ -44,7 +45,7 @@ classdef Symulator < handle
     end
 
     methods ( Access = public ) 
-        function obj = Symulator()  % Konstruktor
+        function obj = Symulator2()  % Konstruktor
         end
 
         % Funkcja przeprowadzająca symulacje
@@ -261,8 +262,13 @@ classdef Symulator < handle
                 end
                 % OBLICZENIE BER I INNYCH PARAMETRÓW W ZALEŻNOŚCI OD KODU
                 %TEST
-                er = obj.eData ~= obj.tData;
-                obj.ileb = sum(er,'all')/(numel(obj.eData));
+                if(obj.modelKanalu == 0)
+                    obj.xdata = bsc(obj.data,obj.probability);
+                else
+                    obj.xdata = bncChannel(obj.data,obj.lossDensity,obj.G2B,obj.B2G);
+                end
+                er = (obj.data ~= obj.xdata);
+                obj.ileb = sum(er,'all')/(numel(obj.data));
                 obj.oY2(1,j) = obj.ileb;
                 %TEST
                 calcBER(obj);
