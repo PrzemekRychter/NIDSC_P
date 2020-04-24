@@ -1,6 +1,6 @@
 % Wystarczy właczyć ten skrypt
-a = Symulator();
-a.simulate();
+symulator = Symulator();
+a.simUSR();
 
 % Po podaniu wszystkich danych skrypt poda wykres
 % w obiekcie a będa tez dane wykresu w przypadku
