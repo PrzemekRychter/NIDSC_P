@@ -15,7 +15,7 @@
 
 Symulacja zostanie wykonana. W celu pozyskania danych do dalszych badań,
 przed uruchomieniem symulacji przypisz wyniki symulacji do zmiennej 
-        dane = obiekt.simulate();  
+        dane = obiekt.simUSR();  
 W zmiennej dane w 1 wierszu będzie oś X, a w 2 oś Y
 
 W celu zapamiętania danych zapisz wykres będący wynikiem symulacji (okno.fig)
