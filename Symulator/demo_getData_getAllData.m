@@ -14,3 +14,8 @@ for n = 1 : size(X,1)
     hold on
     plot(X(n,:),Y(n,:));
 end
+
+
+
+% Funkcje getData i getAllData nie zwracają takich obiektów jak legenda ....
+% ale można je dalej zmodyfikować w celu zwrócenia dowolnych argumentów
