@@ -3,7 +3,7 @@
 % w wektorze col jest zapisany kolor RGB
 %
 
-function [xy,col]  = pobierz(nazwaFig,n)
+function [xy,col]  = getData(nazwaFig,n)
     openfig(nazwaFig) % Otwiera obiekt fig o nazwie okno
     D=get(gca,'Children'); 
     XData=get(D,'XData');       %XData ma komórki typu cell
