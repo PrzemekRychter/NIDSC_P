@@ -1,3 +1,13 @@
+%
+%
+%
+% Ten symulator wyrzuca 2 wykresy
+% 1. BER widziany przez użytkownika - niebieski wykres
+% 2. BER - prawdziwa stopa błedów w kanale (tak jakby nie użyto kodowania)
+%
+%
+%
+%
 classdef Symulator < handle
     properties
         %TEST 
