@@ -19,3 +19,4 @@ minimalną niż odpowiednie kody BCH. Analiza parametrów kodu pokazuje, że ze
 wzrostem długości wektora kodowego n maleje zdolność korekcyjna kodu t, gdy
 stosunek n/k jest stały. Świadczy to o tym, że kody BCH są słabymi kodami dla
 duży" ksiazka p Mochnackiego str 114
+https://ww2.mathworks.cn/help/comm/ug/error-detection-and-correction.html#bsxtjo1
