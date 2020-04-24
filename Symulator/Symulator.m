@@ -1,5 +1,6 @@
 classdef Symulator < handle
     properties
+
         % DANE, PARAMETRY, ZMIENNE POMOCNICZE
         % długość danych, dane wejściowe, zakodowane, po transmisji, odkodowane
         leng; data;   eData;  tData; dData;
@@ -18,7 +19,7 @@ classdef Symulator < handle
         % Parametry dla BNC -  burst noise channel - model Gilberta
         abel;        	  % Avarage burst error length - średnia długosc błedu
         probBurstError;   % Prawdopodobienstwo wystapienia błedu grupowego
-        G2B;              % prawdopodobienstwo przejscia ze stanu dobrego do zlego  G2B = probBurstE/((1-probBurstE)*abel)
+        G2B;              % prawdopodobienstwo przejscia ze stanu dobrego do zlego  probBurstError = G2B
         B2G;              % prawdopodobieństwo przejścia ze zlego do dobrego        B2G = 1/abel
         lossDensity;      % prawdopodobienstwa przklamania w stanie zlym
         expectedERcec;    % spodziewany error rate dla BNC (nie uwzglednia kodowań)
@@ -97,7 +98,7 @@ classdef Symulator < handle
             obj.probBurstError = prob;
             obj.lossDensity = loss;
             obj.B2G = 1/a;
-            obj.G2B = prob/((1-prob)*a);
+            obj.G2B = obj.probBurstError;
         end
         % Transmisja danych przez kanał BSC
         function bsc(obj)
@@ -247,9 +248,11 @@ classdef Symulator < handle
                         dHam(obj);
                 end
                 % OBLICZENIE BER I INNYCH PARAMETRÓW W ZALEŻNOŚCI OD KODU
+
                 calcBER(obj);
                 obj.oY(1,j) = obj.ber;
                 obj.data = 0; obj.eData = 0; obj.tData = 0; obj.dData = 0; obj.ber = 0;
+
                 % Wyswietlenie postępu
                 proc = viewStage(proc,j,ileRazy);
             end
