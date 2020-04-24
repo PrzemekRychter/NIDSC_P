@@ -1,6 +1,5 @@
 classdef Symulator < handle
     properties
-
         % DANE, PARAMETRY, ZMIENNE POMOCNICZE
         % długość danych, dane wejściowe, zakodowane, po transmisji, odkodowane
         leng; data;   eData;  tData; dData;
@@ -30,8 +29,9 @@ classdef Symulator < handle
         oY;  % tak naprawde oX
         oX;  % oY
     end
-
-    methods ( Access = public ) 
+    
+    methods ( Access = public )         % Blok zawiera funkcje dla użytkownika klasy
+        
         function obj = Symulator()  % Konstruktor
         end
 
@@ -263,6 +263,7 @@ classdef Symulator < handle
             fprintf("-------------------SIMULATION COMPLETED---------------------\n");
             figure
             plot(obj.oX,obj.oY);
+
             ylabel('BER - bit error ratio');
         end
         
