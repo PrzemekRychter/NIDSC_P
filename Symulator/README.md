@@ -27,10 +27,9 @@ jest pokazane w skrypcie "uzycieSymulatora.m"
 Uruchamianie z kanałem BNC (błedy grupowe) wymaga podania 3 parametrów: 
 * ABEL - Avarage burst error length - średnia długosc błędu
 * r = 1/Abel r to prawdopodobieństwo przejścia ze stanu złego do dobrego
-* Probavility of burst error  - prawdopodobienstwo wystapienia blędu grupowego
+* Probavility of burst error  - prawdopodobienstwo wystapienia blędu grupowego to poprostu przejscie G2B
 
- ABEL definiujący r oraz Probavility of burst error definiujący p - zostały opisane
- wzorem podanym pod pierwszym poniższym linkiem
+ABEL definiuje q = B2G  Probavility of burst error = G2B definiuje G2B 
  * https://www.researchgate.net/publication/266652304_Subjective_and_Objective_Evaluation_and_Packet_Loss_Modeling_for_3D_Video_Transmission_over_LTE_Networks
 * https://www.google.com/search?client=firefox-b-d&q=mochancki+kodowanie ( książka Władysława Mochnackiego)
 
