@@ -21,7 +21,7 @@ classdef Symulator < handle
         % Parametry dla BNC -  burst noise channel - model Gilberta
         abel;        	  % Avarage burst error length - średnia długosc błedu
         probBurstError;   % Prawdopodobienstwo wystapienia błedu grupowego
-        G2B;              % prawdopodobienstwo przejscia ze stanu dobrego do zlego  G2B = probBurstE/((1-probBurstE)*abel)
+        G2B;              % prawdopodobienstwo przejscia ze stanu dobrego do zlego  probBurstError = G2B
         B2G;              % prawdopodobieństwo przejścia ze zlego do dobrego        B2G = 1/abel
         lossDensity;      % prawdopodobienstwa przklamania w stanie zlym
         expectedERcec;    % spodziewany error rate dla BNC (nie uwzglednia kodowań)
@@ -100,7 +100,7 @@ classdef Symulator < handle
             obj.probBurstError = prob;
             obj.lossDensity = loss;
             obj.B2G = 1/a;
-            obj.G2B = prob/((1-prob)*a);
+            obj.G2B = obj.probBurstError;
         end
         % Transmisja danych przez kanał BSC
         function bsc(obj)
