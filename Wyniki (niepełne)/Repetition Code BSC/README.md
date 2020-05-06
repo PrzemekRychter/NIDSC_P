@@ -10,6 +10,6 @@ Skok: 0.0005 <br>
 P początkowe: *wskazane przez nazwę pliku* <br>
 P końcowe: *wskazane przez nazwę pliku* <br>
 **-----------------------------------------------**<br>
-Zależność BER od jakości kanału: <br>
-Zależność BER od nadmiaru kodowego: <br>
+Zależność BER od jakości kanału: Pliki Plot ... - ...%.fig<br>
+Zależność BER od nadmiaru kodowego: Plik Plot redundancy.fig (*kod powtórzeniowy jako przypadek kodu Hamminga*)<br>
 **-----------------------------------------------**<br>
