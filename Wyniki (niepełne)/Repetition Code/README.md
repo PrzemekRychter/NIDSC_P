@@ -7,4 +7,5 @@ Nadmiarowość = (n-k)/n = (3-1)/3 = **0.67** <br>
 - Zależność BER od jakości kanału: <br> *Pliki **Plot ... - ...%.fig***<br>
 - Zależność BER od typu błędów w kanale: <br> *Foldery **Typy błędów w kanale - pojedyńcze/grupwe***<br>
 - Zależność BER od nadmiaru kodowego: <br>  *Folder **Nadmiarowość** (*kod powtórzeniowy jako przypadek kodu Hamminga*)*<br>
+
 **--------------------------------------------**<br>
