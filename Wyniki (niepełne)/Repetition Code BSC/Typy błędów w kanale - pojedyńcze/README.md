@@ -1,0 +1,2 @@
+# Błędy pojedyńcze #
+## Parametry ##
