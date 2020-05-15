@@ -6,5 +6,5 @@ Ilość danych: 100000 <br>
 Loose density: 50%
 ABEL: 5
 Probability of burst error: *wskazane przez nazwę pliku* <br>
-Skok: 0.0005
+Skok: 0.0005 <br>
 **--------------------------------------------**<br>
