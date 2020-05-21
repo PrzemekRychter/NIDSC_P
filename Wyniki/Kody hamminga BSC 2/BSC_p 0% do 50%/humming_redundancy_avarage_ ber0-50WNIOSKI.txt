@@ -1,0 +1,9 @@
+Nie uwzgłedniają repetition code o duzej nadmiarowosci
+z wykresu wynika że dla kanału w którym:
+- występuje od 0% do 50%  przekłaman niezależnych bitów
+- prawdopodobienstwo prawdopodobienstwa przeklamania miedzy
+  0% a 50% ma rozkład jednostajny
+Warto zastosować kod humminga (255,247) ponieważ,
+ ze wszystkich kodów ma najmiejszą nadmiarowosc, oraz
+prawie najmiejszy BER (nieco mniejsza mniejszy ma jedynie(7,4)
+ który ma bardzo dużą nadmiarowosc)
