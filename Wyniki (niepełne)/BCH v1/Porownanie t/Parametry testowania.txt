@@ -5,9 +5,9 @@ p poczatkowe = 0
 skok = 0.0005
 p koncowe = 1
 
-
 Czasy symulacji
-(63,57), t=1  	 33s      
+
+(63,57) ,t=1  	 33s      
 (63,51) ,t=2  	 42s	
 (63,45) ,t=3   	 59s	
 (63,39) ,t=4  	 79s
