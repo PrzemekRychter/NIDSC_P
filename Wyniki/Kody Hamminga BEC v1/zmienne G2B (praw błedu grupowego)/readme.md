@@ -11,5 +11,5 @@ ABEL = 4;  <br>
 G2B = 0.0;  <br>
 loss = 0.9;  <br>
 zmienny = 2;  <br>
-int = 0.001;  <br>
+int = 0.0001;  <br>
 kon = 0.3;  <br>
