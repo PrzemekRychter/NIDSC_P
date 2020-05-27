@@ -1,0 +1,8 @@
+Kody hamminga, błedy grupowe
+parametry stałe: ABEL = 4 (śr. długosc bledu), loss density = 90% 
+parametr zmienny: G2B - prawdopodobieństwo wystapienia błedu grupowego od 0% do 20%
+
+Wnioski:
+Obserwując wykresy dla wszystkich badanych kodów można zauważyć:
+- Przewidywalnie kod (3,1) Repetiton ma prawie zawsze najmiejszy BER
+- analizujac G2B np od 3% można zauważyc zę kod(255,247)
