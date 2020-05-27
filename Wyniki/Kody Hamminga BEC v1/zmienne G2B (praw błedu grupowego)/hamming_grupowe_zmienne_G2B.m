@@ -2,7 +2,7 @@
 % Śr długosc błedu (ABEL) = 4
 % Praw. błedu grupowego: 0%
 % Praw przekłamania bitu w stanie złym: 90%
-% Zmienny paramter: praw.błedu grupowego od 0% do 20%
+% Zmienny paramter: praw.błedu grupowego od 0% do 10%
 
 leng = 100000;
 typ = 0;  % 0 - kody hamminga
@@ -12,8 +12,8 @@ ABEL = 4;
 G2B = 0.0;
 loss = 0.9;
 zmienny = 2;
-int = 0.0001;
-kon = 0.2;
+int = 0.00001;
+kon = 0.1;
 a = Symulator();
 
 %a.simBNC(leng,typ,n,k,ABEL,G2B,loss,zmienny,int,kon);
