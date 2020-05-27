@@ -1,5 +1,5 @@
- Badanie BER dla kodów hamminga, dla kanału błędów grupowych
- Śr długosc błedu (ABEL) = 4 (bity)
+ Badanie BER dla kodów hamminga, dla kanału błędów grupowych <br>
+ Śr długosc błedu (ABEL) = 4 (bity) <br>
  Praw. błedu grupowego: 0%
  Praw przekłamania bitu w stanie złym: 90%
  Zmienny paramter: praw.błedu grupowego od 0% do 30%
